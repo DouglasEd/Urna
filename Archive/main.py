@@ -89,8 +89,6 @@ while True:
                 if conf== True:
                     if heigth*0.1+210 >= mouse[1] >= heigth*0.1+160 and 210 >= mouse[0]>= 10:
                         state='Wait'
-                print(mat,'-------')
-                print(ev.type,'-------')
                 mat=mat[0:12]
         #elif ev.type==pygame.MOUSEBUTTONUP:
          #   pass   
@@ -107,7 +105,7 @@ while True:
                     if heigth/2+170 >= mouse[1] >= heigth/2-200 and width/2+590 >= mouse[0]>= width/2+220:
                         # width/2+220,heigth/2-200,370,370
                         confV = True
-                        voto=""
+                        voto="Chapa DOS"
                 if confV == True:
                     if heigth/2+300 >= mouse[1]>= heigth/2+150 and width/2-10 >= mouse[0] >= width/2-210:
                         Sheet.EnviarVoto(mat,voto)
@@ -157,17 +155,17 @@ while True:
     if state == 'VotoC':
         image = pygame.image.load("img/Turing.png")
         image = pygame.transform.scale(image,(370,370))
+        imgDOS = pygame.image.load("img/DOS.png")
+        imgDOS = pygame.transform.scale(imgDOS, (370,370))
         screen.fill((100,100,100))
         screen.blit(image,(50,heigth/2-200))
         #chapC=smalfont.render(f'Chapa Cabelittle',True,(255,255,255))
         Branc=smalfont.render(f'BRANCO',True,(0,0,0))
-        Nul=smalfont.render(f'NULO', True,(255,255,255))
         # pygame.draw.rect(screen,(38,13,38),pygame.Rect(50,heigth/2+10,370,160))
         #screen.blit(chapC,(100,heigth/2+50))
         pygame.draw.rect(screen,(255,255,255),pygame.Rect(width/2-185,heigth/2-200,370,370))
         screen.blit(Branc,(width/2-75,heigth/2-20))
-        pygame.draw.rect(screen,(30,30,30),pygame.Rect(width/2+220,heigth/2-200,370,370))
-        screen.blit(Nul,(width/2+350,heigth/2-20))
+        screen.blit(imgDOS,(width/2+220,heigth/2-200))
         if confV == True:
             pygame.draw.rect(screen,(255,255,255),pygame.Rect(10,10,width-20,heigth-20))
             pygame.draw.rect(screen,(0,255,0),pygame.Rect(width/2-210,heigth/2+150,200,150))

@@ -26,34 +26,34 @@ def EnviarVoto(mat,voto):
     f.close
     #Online
     creds = None
-    try:
-        if os.path.exists('token.json'):
-            creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
-                creds.refresh(Request())
-            else:
-                flow = InstalledAppFlow.from_client_secrets_file(
-                    'credentials.json', SCOPES)
-                creds = flow.run_local_server(port=0)
-            with open('token.json', 'w') as token:
-                token.write(creds.to_json())
+    #try:
+        #if os.path.exists('token.json'):
+        #    creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+        #if not creds or not creds.valid:
+        #    if creds and creds.expired and creds.refresh_token:
+        #        creds.refresh(Request())
+        #    else:
+        #        flow = InstalledAppFlow.from_client_secrets_file(
+        #            'credentials.json', SCOPES)
+        #        creds = flow.run_local_server(port=0)
+        #    with open('token.json', 'w') as token:
+        #        token.write(creds.to_json())
     
-        service = build('sheets', 'v4', credentials=creds)
+        #service = build('sheets', 'v4', credentials=creds)
 
-        sheet = service.spreadsheets()
-        result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
-                                      range=SRL).execute()
-        values = result.get('values', [])
-        valor= [[mat,voto]]
-        sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID,range=f"log!A{len(values)+1}",valueInputOption="USER_ENTERED" , body= {'values': valor}).execute()
-    except:
-        e=open('Erros.txt', 'r')
-        tex= e.readlines()
-        tex.append(f'{mat} {voto}')
-        e=open('Erros.txt', 'w')
-        e.writelines(tex)
-        e.close
+        #sheet = service.spreadsheets()
+        #result = sheet.values().get(spreadsheetId=SAMPLE_SPREADSHEET_ID,
+        #                              range=SRL).execute()
+        #values = result.get('values', [])
+        #valor= [[mat,voto]]
+        #sheet.values().update(spreadsheetId=SAMPLE_SPREADSHEET_ID,range=f"log!A{len(values)+1}",valueInputOption="USER_ENTERED" , body= {'values': valor}).execute()
+    #except:
+        #e=open('Erros.txt', 'r')
+        #tex= e.readlines()
+        #tex.append(f'{mat} {voto}')
+        #e=open('Erros.txt', 'w')
+        #e.writelines(tex)
+        #e.close
 
 def AcessarMats(mat):
     Validade = False
